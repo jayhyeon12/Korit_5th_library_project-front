@@ -25,3 +25,18 @@ export const menuButton = css`
     }
 
 `;
+
+export const account = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 8px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    overflow: hidden;
+    text-decoration: none;
+    color: #222222;
+    cursor: pointer;
+`;
