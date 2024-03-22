@@ -47,7 +47,7 @@ function SignupPage() {
     }
     
     const handleSignupSubmit = () => {
-        if (messageGroup?.checkPassword?.type === "error") {
+        if(messageGroup?.checkPassword?.type === "error") {
             alert("가입 정보 확인이 필요합니다");
             return;
         }

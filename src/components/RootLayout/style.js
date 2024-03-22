@@ -11,13 +11,14 @@ export const background = css`
 `;
 
 export const layout = css`
-    width: 800px;
-    height: 600px;
+    box-sizing: border-box;
+    position: relative;
     margin: 100px auto;
     border: 2px solid #fafafa;
     border-radius: 30px;
-    box-sizing: border-box;
-    background-color: black;
+    padding: 8px;
+    width: 800px;
+    height: 600px;
     overflow: hidden;
-    padding: 7px;
+    background-color: black;
 `;

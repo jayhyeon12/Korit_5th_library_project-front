@@ -6,5 +6,5 @@ export const layout = css`
     padding: 50px 0px;
     width: 300px;
     height: 500px;
-    background-color: transparent;
+    
 `;

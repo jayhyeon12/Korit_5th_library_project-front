@@ -31,12 +31,32 @@ export const account = css`
     justify-content: center;
     align-items: center;
     margin: 0px 8px;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    border: 1px solid #dbdbdb;
     overflow: hidden;
     text-decoration: none;
     color: #222222;
+    cursor: pointer;
+`;
+
+export const accountItems = css`
+    display: flex;
+    align-items: center;
+    height: 100%;
+`;
+
+export const logout = css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    background-color: transparent;
     cursor: pointer;
 `;

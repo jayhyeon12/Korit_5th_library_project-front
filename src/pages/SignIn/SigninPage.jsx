@@ -36,13 +36,13 @@ function SigninPage() {
                 </div>
                 <ul>
                     <li>
-                        <Link>카카오로그인</Link>
+                        <a href="http://localhost:8080/oauth2/authorization/kakao">카카오로그인</a>
                     </li>
                     <li>
-                        <Link>구글로그인</Link>
+                        <a href="http://localhost:8080/oauth2/authorization/google">구글로그인</a>
                     </li>
                     <li>
-                        <Link>네이버로그인</Link>
+                        <a href="http://localhost:8080/oauth2/authorization/naver">네이버로그인</a>
                     </li>
                 </ul>
         </>
