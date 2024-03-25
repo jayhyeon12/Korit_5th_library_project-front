@@ -3,7 +3,7 @@ import { useMutation } from 'react-query';
 import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
 import { useAuthCheck } from '../../hooks/useAuthCheck';
 import { useInput } from '../../hooks/useInput';
-import { editPasswordRequest } from '../../apis/api/EditPassword';
+import { editPasswordRequest } from '../../apis/api/editPassword';
 
 function PasswordEditPage(props) {
     useAuthCheck();

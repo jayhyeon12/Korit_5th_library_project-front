@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { FiUser, FiLogOut } from "react-icons/fi";
 import { useQueryClient } from "react-query";
 import { useEffect, useState } from "react";
-import instance from "../../apis/utils/Instance";
+import instance from "../../apis/utils/instance";
 
 function RootHeader() {
     const [ show, setShow ] = useRecoilState(menuState);

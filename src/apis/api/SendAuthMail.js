@@ -1,4 +1,4 @@
-import instance from "../utils/Instance"
+import instance from "../utils/instance"
 
 export const sendAuthMailRequest = async () => {
     return await instance.post("/mali/send");

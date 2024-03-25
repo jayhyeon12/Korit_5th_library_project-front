@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useInput } from '../../hooks/useInput';
 import { useMutation } from 'react-query';
-import { OAuth2SignupRequest } from '../../apis/api/Signup';
+import { oAuth2SignupRequest } from '../../apis/api/signup';
 import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
 import RightTopButton from "../../components/RightTopButton/RightTopButton";
 
@@ -21,7 +21,7 @@ function OAuth2SignupPage() {
 
     const oAuth2SignupMutation = useMutation({
         mutationKey: "oAuth2SignupMutation",
-        mutationFn: OAuth2SignupRequest,
+        mutationFn: oAuth2SignupRequest,
         onSuccess: response => {
             navigate("/auth/signin")
         },

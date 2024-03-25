@@ -2,7 +2,7 @@
 import * as s from "./style";
 import { GoCheckCircle } from "react-icons/go";
 import { useMutation, useQueryClient } from "react-query";
-import { sendAuthMailRequest } from "../../apis/api/SendAuthMail";
+import { sendAuthMailRequest } from "../../apis/api/sendAuthMail";
 import FullSizeLoader from "../../components/FullSizeLoader/FullSizeLoader";
 import { useAuthCheck } from "../../hooks/useAuthCheck";
 import { useNavigate } from "react-router-dom";

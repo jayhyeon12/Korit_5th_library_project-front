@@ -1,21 +1,21 @@
 /**@jsxImportSource @emotion/react */
-import { signupRequest } from '../../apis/api/Signup';
-import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
-import RightTopButton from '../../components/RightTopButton/RightTopButton';
-import { useInput } from '../../hooks/useInput';
 import * as s from "./style";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useInput } from '../../hooks/useInput';
+import { signupRequest } from '../../apis/api/signup';
+import AuthPageInput from '../../components/AuthPageInput/AuthPageInput';
+import RightTopButton from '../../components/RightTopButton/RightTopButton';
 
 function SignupPage() {
     const navigate = useNavigate();
 
-    const [ username, usernameChange, usernameMessage, setUsernameValue, setUsernameMessage ] = useInput("username");
+    const [ username, userNameChange, usernameMessage, setUsernameValue, setUsernameMessage ] = useInput("username");
     const [ password, passwordChange, passwordMessage ] = useInput("password");
     const [ checkPassword, checkPasswordChange ] = useInput("checkPassword");
     const [ name, nameChange, nameMessage ] = useInput("name");
     const [ email, emailChange, emailMessage ] = useInput("email");
-    const [ checkPasswordMessage, setCheckPasswordMessage ] = useState("checkPasswordMessage");
+    const [ checkPasswordMessage, setCheckPasswordMessage ] = useState(null);
 
     useEffect(() => {
         if(!checkPassword || !password) {
@@ -37,7 +37,7 @@ function SignupPage() {
                 }
             })
         }
-    }, [password, checkPassword]);
+    }, [checkPassword, password]);
 
     const handleSignupSubmit = () => {
         const checkFlags = [
@@ -86,7 +86,7 @@ function SignupPage() {
                     <h1>회원가입</h1>
                     <RightTopButton onClick={handleSignupSubmit}>가입하기</RightTopButton>
                 </div>
-                <AuthPageInput type={"text"} name={"username"} placeholder={"사용자 이름"} value={username} onChange={usernameChange} message={usernameMessage}/>
+                <AuthPageInput type={"text"} name={"username"} placeholder={"사용자 이름"} value={username} onChange={userNameChange} message={usernameMessage}/>
                 <AuthPageInput type={"password"} name={"password"} placeholder={"비밀번호"} value={password} onChange={passwordChange} message={passwordMessage}/>
                 <AuthPageInput type={"password"} name={"checkPassword"} placeholder={"비밀번호 확인"} value={checkPassword} onChange={checkPasswordChange} message={checkPasswordMessage}/>
                 <AuthPageInput type={"text"} name={"name"} placeholder={"이름"} value={name} onChange={nameChange} message={nameMessage}/>

@@ -1,4 +1,4 @@
-import instance from "../utils/Instance"
+import instance from "../utils/instance"
 
 export const signupRequest = async (data) => {
     try {
@@ -8,9 +8,8 @@ export const signupRequest = async (data) => {
         console.log(error);
         return error.reponse;
     }
-
 }
 
-export const OAuth2SignupRequest = async (data) => {
+export const oAuth2SignupRequest = async (data) => {
     return await instance.post("/auth/oauth2/signup", data);
 }

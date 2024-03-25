@@ -7,7 +7,7 @@ import OAuth2Page from "../OAuth2Page/OAuth2Page";
 import { useQueryClient } from "react-query";
 import { useEffect } from "react";
 import OAuth2SigninPage from "../OAuth2SigninPage/OAuth2SigninPage";
-import OAuth2MergePage from "../OAuth2MergePage/OAuth2MergePage ";
+import OAuth2MergePage from "../OAuth2MergePage/OAuth2MergePage";
 import OAuth2SignupPage from "../OAuth2SignupPage/OAuth2SignupPage";
 
 function AuthPage() {

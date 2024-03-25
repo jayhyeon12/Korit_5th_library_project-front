@@ -2,7 +2,7 @@
 import { Route, Routes } from 'react-router-dom';
 import AuthPage from '../pages/AuthPage/AuthPage';
 import HomePage from '../pages/HomePage/HomePage';
-import { getPrincipalRequest } from '../apis/api/Princiapl';
+import { getPrincipalRequest } from '../apis/api/princiapl';
 import { useQuery } from 'react-query';
 import RootSideMenuLeft from '../components/RootSideMenuLeft/RootSideMenuLeft';
 import RootHeader from '../components/RootHeader/RootHeader';
@@ -10,6 +10,7 @@ import FullSizeLoader from '../components/FullSizeLoader/FullSizeLoader';
 import MyPage from '../pages/MyPage/MyPage';
 import PageContainer from '../components/PageContainer/PageContainer';
 import PasswordEditPage from '../pages/PasswordEditPage/PasswordEditPage';
+import BookManagement from '../pages/Admin/BookManageMent/BookManagement';
 
 /* useQuery(리액트 쿼리 내 훅함수): get 요청 시 사용
 1. 첫 번째 매개변수 -> 배열 ["key 값", dependency]
@@ -35,7 +36,7 @@ function AuthRoute(props) {
             console.log(response);
         },
         onError: error => {
-            console.log("요청 오류");
+            console.log("오류");
             console.log(error);
         }
     });
@@ -53,6 +54,8 @@ function AuthRoute(props) {
                     <Route path="/" element={ <HomePage /> } />
                     <Route path="/account/mypage" element={ <MyPage /> } />
                     <Route path="/account/edit/password" element={ <PasswordEditPage /> } />
+                    <Route path='/admin/book/management/' element={ <BookManagement /> } />
+
                 </Routes>
             }
             </PageContainer>

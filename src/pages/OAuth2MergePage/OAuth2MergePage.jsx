@@ -5,7 +5,7 @@ import RightTopButton from "../../components/RightTopButton/RightTopButton";
 import { useInput } from "../../hooks/useInput";
 import * as s from "./style";
 import { useSearchParams } from "react-router-dom";
-import { oAuth2MergeRequest } from "../../apis/api/OAuth2Merge";
+import { oAuth2MergeRequest } from "../../apis/api/oAuth2Merge";
 
 function OAuth2MergePage() {
     const [ searchParams ] = useSearchParams();
