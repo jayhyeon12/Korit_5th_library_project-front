@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "react-query";
 import * as s from "./style";
 import Select from "react-select";
 import { getAllBookTypeRequest, getAllCategoryRequest } from "../../../apis/api/option";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import BookRegisterInput from "../../../components/BookRegisterInput/BookRegisterInput";
 import { CiSquarePlus } from "react-icons/ci";
 import { useBookRegisterInput } from "../../../hooks/useBookRegisterInput";
@@ -12,10 +12,14 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../apis/firebase/config/firebaseConfig";
 import RightTopButton from "../../../components/RightTopButton/RightTopButton";
 import { registerBook } from "../../../apis/api/bookApi";
+import AdminBookSearch from "../../../components/AdminBookSearch/AdminBookSearch";
+import { useRecoilState } from "recoil";
+import { selectedBookState } from "../../../atoms/adminSelectedBookAtom";
 
 function BookManagement(props) {
     const [ bookTypesOptions, setBookTypeOptions ] = useState([]);
     const [ categoryOptions, setCategoryOptions ] = useState([]);
+
     const fileRef = useRef();
     const inputRefs = [
         useRef(), 
@@ -82,7 +86,7 @@ function BookManagement(props) {
             bookName: bookName.value,
             author: author.value,
             publisher: publisher.value,
-            coverUrl: coverUrl.value
+            coverImgUrl: imgUrl.value
         });
     }
 
@@ -93,7 +97,19 @@ function BookManagement(props) {
     const bookName = useBookRegisterInput(nextInput, inputRefs[5]);
     const author = useBookRegisterInput(nextInput, inputRefs[6]);
     const publisher = useBookRegisterInput(nextInput, inputRefs[7]);
-    const coverUrl = useBookRegisterInput(submit);
+    const imgUrl = useBookRegisterInput(submit);
+    const [ selectedBook ] = useRecoilState(selectedBookState);
+
+    useEffect(() => {
+        bookId.setValue(() => selectedBook.bookId)
+        isbn.setValue(() => selectedBook.bookId)
+        bookTypeId.setValue(() => ({value: selectedBook.bookTypeId, label: selectedBook.bookTypeName}))
+        categoryId.setValue(() => selectedBook.bookId)
+        bookName.setValue(() => selectedBook.bookId)
+        author.setValue(() => selectedBook.bookId)
+        publisher.setValue(() => selectedBook.bookId)
+        imgUrl.setValue(() => selectedBook.bookId)
+    }, [selectedBook])
 
     const selectStyles = {
         control: baseStyles => ({
@@ -112,7 +128,7 @@ function BookManagement(props) {
         e.target.value = "";
         return;
     }
-        if(window.confirm("파일을 불러오시겠습니까?")) {
+        if(!window.confirm("파일을 불러오시겠습니까?")) {
             e.target.value = "";
             return;
         }
@@ -127,7 +143,7 @@ function BookManagement(props) {
                 alert("업로드가 완료됐습니다");
                 getDownloadURL(storageRef)
                 .then(url => {
-                    coverUrl.setValue(() => url);
+                    imgUrl.setValue(() => url);
                 });
             }
         )
@@ -159,9 +175,9 @@ function BookManagement(props) {
                             <td rowSpan={5} css={s.preview}>
                                 <div css={s.imgBox}>
                                     <img src={
-                                        !coverUrl.value 
+                                        !imgUrl.value 
                                         ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQegZDhYp7xib4Rc4ZxRGe_cHEH5WrGL1wupA&usqp=CAU" 
-                                        : coverUrl.value
+                                        : imgUrl.value
                                     } alt="" />
                                 </div>
                             </td>
@@ -170,12 +186,12 @@ function BookManagement(props) {
                             <th css={s.registerTh}>도서형식</th>
                             <td>
                                 <Select styles={selectStyles} options={bookTypesOptions} onKeyDown={bookTypeId.handleOnKeyDown}
-                                onChange={bookTypeId.handleOnChange} ref={inputRefs[2]}/>
+                                value={bookTypeId.value.value} inputValue={bookTypeId.value.label} onChange={bookTypeId.handleOnChange} ref={inputRefs[2]}/>
                             </td>
                             <th css={s.registerTh}>카테고리</th>
                             <td>
                                 <Select styles={selectStyles} options={categoryOptions} onKeyDown={categoryId.handleOnKeyDown}
-                                onChange={categoryId.handleOnChange} ref={inputRefs[3]}/>
+                                value={categoryId.value.value} inputValue={categoryId.value.label} onChange={categoryId.handleOnChange} ref={inputRefs[3]}/>
                             </td>
                         </tr>
                         <tr>
@@ -206,8 +222,8 @@ function BookManagement(props) {
                                 <div css={s.imgUrl}>
                                     <span css={s.imgUrlBox}>
                                         <BookRegisterInput 
-                                        value={coverUrl.value} bookref={inputRefs[7]} onChange={coverUrl.handleOnChange}
-                                        onKeyDown={coverUrl.handleOnKeyDown}/>
+                                        value={imgUrl.value} bookref={inputRefs[7]} onChange={imgUrl.handleOnChange}
+                                        onKeyDown={imgUrl.handleOnKeyDown}/>
                                     </span>
                                     <input 
                                         type="file" 
@@ -225,8 +241,12 @@ function BookManagement(props) {
                         </tr>
                     </tbody>
                 </table>
-                <div></div>
             </div>
+            <AdminBookSearch
+                selectStyle={selectStyles}
+                bookTypeOptions={bookTypesOptions}
+                categoryOptions={categoryOptions}
+            />
         </div>
     );
 }

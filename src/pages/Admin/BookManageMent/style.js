@@ -2,10 +2,9 @@ import { css } from "@emotion/react";
 
 export const layout = css`
     box-sizing: border-box;
-    margin: 0 auto;
-    padding: 50px 0px;
-    width: 300px;
-    height: 500px;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
     
 `;
 
@@ -30,11 +29,12 @@ export const topLayout = css`
 export const registerTable = css`
     box-sizing: border-box;
     border-collapse: collapse;
-    border-radius: 3px;
+    border: 1px solid #dbdbdb;
     width: 100%;
+    border-radius: 3px;
     background-color: #fdfdfd;
 
-    & > td {
+    & td {
         box-sizing: border-box;
         border: 1px solid #dbdbdb;
         background-color: white;
@@ -47,7 +47,7 @@ export const registerTh = css`
     width: 80px;
     padding: 5px;
     border: 1px solid #dbdbdb;
-    cursor: pointer;
+    cursor: default;
 `;
 
 export const preview = css`
@@ -61,7 +61,7 @@ export const imgBox = css`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    width: 100%;
+    width: 150px;
     height: 100%;
     & > img {
         height: 150px
@@ -73,7 +73,6 @@ export const imgUrl = css`
     display: flex;
 
 `
-
 
 export const imgUrlBox = css`
     display: inline-block;
