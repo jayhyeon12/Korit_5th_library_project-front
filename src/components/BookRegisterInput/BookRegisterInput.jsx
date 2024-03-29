@@ -2,14 +2,18 @@
 import { css } from "@emotion/react";
 
 const inputBox = css`
+    box-sizing: border-box;
     border: none;
     outline: none;
     padding: 0px 10px;
     width: 100%;
     height: 100%;
+    &:disabled {
+        background-color: white;
+    }
 `;
 
-function BookRegisterInput({ value, onChange, onKeyDown, bookref }) {
+function BookRegisterInput({ value, onChange, onKeyDown, bookref, isDisabled }) {
 
     return (
         <input css={inputBox}
@@ -17,7 +21,8 @@ function BookRegisterInput({ value, onChange, onKeyDown, bookref }) {
             value={value} 
             onChange={onChange} 
             onKeyDown={onKeyDown} 
-            ref={bookref}/>
+            ref={bookref}
+            disabled={isDisabled}/>
     );
 }
 
